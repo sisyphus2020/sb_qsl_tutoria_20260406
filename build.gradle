@@ -33,6 +33,9 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // P6Spy Spring Boot Starter
+    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
 }
 
 // QueryDSL QClass 생성 위치 설정 (최신 Gradle 방식)
@@ -52,4 +55,9 @@ clean {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+test {
+    // JVM 인자 직접 추가 (가장 확실한 방법)
+    jvmArgs("-XX:+EnableDynamicAgentLoading")
 }
